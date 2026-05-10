@@ -1,6 +1,7 @@
 import argparse
 import html
 import json
+import math
 import os
 import sys
 import webbrowser
@@ -283,6 +284,36 @@ button:hover { background: #0f4bd6; }
 .score-value { font-size: 20px; }
 .score-value small { color: var(--muted); font-size: 12px; font-weight: 650; margin-left: 4px; }
 .cluster-panel { margin-top: 18px; }
+.cluster-plot {
+  margin-top: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+.cluster-plot-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  padding: 13px 14px 0;
+}
+.cluster-plot-head strong { font-size: 15px; }
+.cluster-plot-head span { color: var(--muted); font-size: 12px; }
+.cluster-plot svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.axis-label {
+  fill: #667085;
+  font-size: 11px;
+}
+.current-dot-label {
+  fill: #17202a;
+  font-size: 12px;
+  font-weight: 750;
+}
 .cluster-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -532,6 +563,110 @@ def _scale(value: float, lo: float, hi: float, out_lo: float, out_hi: float) -> 
     return out_lo + (value - lo) / (hi - lo) * (out_hi - out_lo)
 
 
+def as_float(value) -> float | None:
+    try:
+        value = float(value)
+    except (TypeError, ValueError):
+        return None
+    if not pd.notna(value):
+        return None
+    return value
+
+
+def render_cluster_plot(row: pd.Series) -> str:
+    data = load_cluster_artifacts()
+    points = data.get("points") or []
+    current_x = as_float(row.get("cluster_x"))
+    current_y = as_float(row.get("cluster_y"))
+    active_cluster = str(row.get("cluster_id", ""))
+    if current_x is None or current_y is None:
+        return ""
+
+    def log_coord(value: float) -> float:
+        return math.log1p(max(value, 0.0))
+
+    plot_points = []
+    xs = [log_coord(current_x)]
+    ys = [log_coord(current_y)]
+    for point in points:
+        x = as_float(point.get("x"))
+        y = as_float(point.get("y"))
+        if x is None or y is None:
+            continue
+        cluster_id = str(point.get("cluster_id", ""))
+        plot_x = log_coord(x)
+        plot_y = log_coord(y)
+        plot_points.append((plot_x, plot_y, cluster_id))
+        xs.append(plot_x)
+        ys.append(plot_y)
+
+    width = 620
+    height = 340
+    left = 48
+    right = 22
+    top = 24
+    bottom = 44
+    min_x, max_x = min(xs), max(xs)
+    min_y, max_y = min(ys), max(ys)
+    pad_x = (max_x - min_x) * 0.06 or 1
+    pad_y = (max_y - min_y) * 0.08 or 1
+    min_x -= pad_x
+    max_x += pad_x
+    min_y -= pad_y
+    max_y += pad_y
+
+    colors = {
+        "1": "#155eef",
+        "2": "#0f8a5f",
+        "3": "#b7791f",
+        "4": "#c2410c",
+        "5": "#7c3aed",
+        "6": "#0891b2",
+    }
+
+    circles = []
+    for x, y, cluster_id in plot_points:
+        cx = _scale(x, min_x, max_x, left, width - right)
+        cy = _scale(y, min_y, max_y, height - bottom, top)
+        color = colors.get(cluster_id, "#667085")
+        opacity = "0.42" if cluster_id == active_cluster else "0.18"
+        radius = "3.1" if cluster_id == active_cluster else "2.4"
+        circles.append(
+            f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{radius}" fill="{color}" opacity="{opacity}"></circle>'
+        )
+
+    current_plot_x = log_coord(current_x)
+    current_plot_y = log_coord(current_y)
+    current_cx = _scale(current_plot_x, min_x, max_x, left, width - right)
+    current_cy = _scale(current_plot_y, min_y, max_y, height - bottom, top)
+    active_color = colors.get(active_cluster, "#155eef")
+    x_mid = (left + width - right) / 2
+    y_mid = (top + height - bottom) / 2
+    y_label = f"{current_y:.2f}"
+
+    return f"""
+      <div class="cluster-plot">
+        <div class="cluster-plot-head">
+          <strong>Cluster map</strong>
+          <span>active cluster {html.escape(active_cluster or "-")}</span>
+        </div>
+        <svg viewBox="0 0 {width} {height}" role="img" aria-label="cluster scatter plot">
+          <rect x="{left}" y="{top}" width="{width - left - right}" height="{height - top - bottom}" fill="#f8fafc"></rect>
+          <line x1="{left}" y1="{height - bottom}" x2="{width - right}" y2="{height - bottom}" stroke="#c8d0dc"></line>
+          <line x1="{left}" y1="{top}" x2="{left}" y2="{height - bottom}" stroke="#c8d0dc"></line>
+          <line x1="{left}" y1="{y_mid:.1f}" x2="{width - right}" y2="{y_mid:.1f}" stroke="#e4e7ec"></line>
+          <line x1="{x_mid:.1f}" y1="{top}" x2="{x_mid:.1f}" y2="{height - bottom}" stroke="#e4e7ec"></line>
+          {''.join(circles)}
+          <circle cx="{current_cx:.1f}" cy="{current_cy:.1f}" r="8" fill="#ffffff" stroke="{active_color}" stroke-width="4"></circle>
+          <circle cx="{current_cx:.1f}" cy="{current_cy:.1f}" r="3.2" fill="{active_color}"></circle>
+          <text class="current-dot-label" x="{min(current_cx + 12, width - 118):.1f}" y="{max(current_cy - 10, top + 16):.1f}">current</text>
+          <text class="axis-label" x="{left}" y="{height - 16}">log area: {current_x:.1f} m2</text>
+          <text class="axis-label" x="{width - 198}" y="{height - 16}">log rent median: {html.escape(y_label)} eok</text>
+        </svg>
+      </div>
+    """
+
+
 def render_cluster_profile(active_cluster: str | None, row: pd.Series) -> str:
     data = load_cluster_artifacts()
     profile = data.get("profile")
@@ -627,6 +762,7 @@ def render_result(result: pd.DataFrame | None, error: str | None) -> str:
       <div class="explain">
         위험 판단은 제시 보증금이 LH 기준 적정가와 95% 예측 상한 대비 높은 정도를 중심으로 판단합니다. 예측구간 기준: {safe_text(row.get('interval_source'))}.
       </div>
+      {render_cluster_plot(row)}
       {render_cluster_profile(row.get('cluster_id'), row)}
     </section>
     """
@@ -690,7 +826,7 @@ class AppHandler(BaseHTTPRequestHandler):
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Local frontend for fair jeonse deposit and risk prediction.")
-    parser.add_argument("--host", default="127.0.0.1")
+    parser.add_argument("--host", default=os.environ.get("HOST", "0.0.0.0"))
     parser.add_argument("--port", type=int, default=int(os.environ.get("PORT", "8501")))
     parser.add_argument("--artifact-dir", default=str(DEFAULT_ARTIFACT_DIR))
     parser.add_argument("--no-browser", action="store_true")
@@ -699,11 +835,15 @@ def main() -> None:
     AppHandler.artifact_dir = Path(args.artifact_dir)
     server = ThreadingHTTPServer((args.host, args.port), AppHandler)
     url = f"http://{args.host}:{args.port}"
+    browser_host = "localhost" if args.host in {"0.0.0.0", "::"} else args.host
+    browser_url = f"http://{browser_host}:{args.port}"
     print(f"serving {url}")
+    if args.host == "0.0.0.0":
+        print("public mode: listening on all network interfaces")
     print(f"artifact_dir={AppHandler.artifact_dir}")
     if not args.no_browser and not os.environ.get("RENDER"):
         try:
-            webbrowser.open(url)
+            webbrowser.open(browser_url)
         except Exception:
             pass
     try:

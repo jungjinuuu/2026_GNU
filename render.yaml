@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: jeonse-risk-app
-    runtime: python
-    buildCommand: pip install -r requirements-deploy.txt
-    startCommand: python src/frontend/app.py --host 0.0.0.0 --no-browser
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.11.11
