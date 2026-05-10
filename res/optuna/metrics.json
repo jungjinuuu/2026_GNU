@@ -1,0 +1,128 @@
+{
+  "target": "log1p_lh_vs_rent_median_ratio_winsor",
+  "model": "optuna_lgbm",
+  "split": {
+    "strategy": "year_stratified_group_split",
+    "group_cols": [
+      "gu_code",
+      "ym",
+      "property_type"
+    ],
+    "train_size": 0.7,
+    "valid_size": 0.15,
+    "test_size": 0.15,
+    "random_state": 42,
+    "rows": {
+      "train": 45477,
+      "valid": 9881,
+      "test": 9074
+    },
+    "years": {
+      "2022": {
+        "groups": 541,
+        "train_groups": 378,
+        "valid_groups": 81,
+        "test_groups": 82
+      },
+      "2023": {
+        "groups": 554,
+        "train_groups": 387,
+        "valid_groups": 83,
+        "test_groups": 84
+      },
+      "2024": {
+        "groups": 1096,
+        "train_groups": 767,
+        "valid_groups": 164,
+        "test_groups": 165
+      },
+      "2025": {
+        "groups": 1042,
+        "train_groups": 729,
+        "valid_groups": 156,
+        "test_groups": 157
+      }
+    }
+  },
+  "features": {
+    "count": 41,
+    "categorical": [
+      "gu_code",
+      "gu_name",
+      "ym",
+      "property_type",
+      "주택유형",
+      "유형"
+    ],
+    "numeric": [
+      "방갯수",
+      "area_m2",
+      "세대원수",
+      "rent_txn_count",
+      "jeonse_txn_count",
+      "rent_deposit_median",
+      "rent_deposit_mean",
+      "rent_deposit_per_m2_median",
+      "rent_deposit_per_m2_mean",
+      "monthly_rent_median",
+      "area_m2_median",
+      "sale_txn_count",
+      "sale_price_median",
+      "sale_price_mean",
+      "sale_price_per_m2_median",
+      "sale_price_per_m2_mean",
+      "sale_area_m2_median",
+      "is_ood_property_type",
+      "is_in_domain_property_type",
+      "is_exact_duplicate",
+      "area_missing_or_zero",
+      "area_too_small",
+      "area_review_large",
+      "area_too_large",
+      "room_missing",
+      "room_too_large",
+      "household_size_missing_or_zero",
+      "sale_feature_missing",
+      "sale_low_confidence",
+      "rent_feature_missing",
+      "area_m2_clean",
+      "room_count_clean",
+      "room_count_imputed",
+      "household_size_clean",
+      "household_size_imputed"
+    ]
+  },
+  "study": {
+    "n_trials": 40,
+    "best_value": 0.182570521679629,
+    "best_params": {
+      "n_estimators": 1508,
+      "learning_rate": 0.06328120522935658,
+      "num_leaves": 149,
+      "max_depth": 3,
+      "min_child_samples": 31,
+      "subsample": 0.9088827109100357,
+      "colsample_bytree": 0.9994830083580667,
+      "reg_alpha": 0.0014021332767649097,
+      "reg_lambda": 18.49255247119437
+    }
+  },
+  "valid": {
+    "models": {
+      "optuna_lgbm": {
+        "rmse": 0.182570521679629,
+        "mae": 0.1301192576910509,
+        "r2": 0.925554034874514
+      }
+    }
+  },
+  "test": {
+    "models": {
+      "optuna_lgbm": {
+        "rmse": 0.18395613771537828,
+        "mae": 0.13145543852329494,
+        "r2": 0.9290343995161933
+      }
+    }
+  }
+}

@@ -1,0 +1,869 @@
+{
+  "selected_from_score": {
+    "updated_at": "2026-05-08T09:41:21",
+    "experiment": "catboost_optuna",
+    "run_name": "catboost_optuna_RMSE_40trials",
+    "model": "catboost_optuna",
+    "split": "test",
+    "rmse": 0.1814586935683682,
+    "mae": 0.1307594203579547,
+    "r2": 0.9309482203205494,
+    "target": "log1p_lh_vs_rent_median_ratio_winsor",
+    "rows": 9074,
+    "result_path": "res/catboost_optuna/metrics.json",
+    "notes": "n_trials=40,loss=RMSE"
+  },
+  "target": "log1p_lh_vs_rent_median_ratio_winsor",
+  "model_name": "catboost_optuna",
+  "best_params": {
+    "bootstrap_type": "MVS",
+    "iterations": 1855,
+    "learning_rate": 0.06753518827493067,
+    "depth": 6,
+    "l2_leaf_reg": 7.810508704437983,
+    "random_strength": 0.07005169478946843,
+    "border_count": 192,
+    "min_data_in_leaf": 67,
+    "subsample": 0.7394376063146242,
+    "loss_function": "RMSE",
+    "eval_metric": "RMSE",
+    "random_seed": 42,
+    "allow_writing_files": false,
+    "verbose": false
+  },
+  "split": {
+    "strategy": "year_stratified_group_split",
+    "group_cols": [
+      "gu_code",
+      "ym",
+      "property_type"
+    ],
+    "train_size": 0.7,
+    "valid_size": 0.15,
+    "test_size": 0.15,
+    "random_state": 42,
+    "rows": {
+      "train": 45477,
+      "valid": 9881,
+      "test": 9074
+    },
+    "years": {
+      "2022": {
+        "groups": 541,
+        "train_groups": 378,
+        "valid_groups": 81,
+        "test_groups": 82
+      },
+      "2023": {
+        "groups": 554,
+        "train_groups": 387,
+        "valid_groups": 83,
+        "test_groups": 84
+      },
+      "2024": {
+        "groups": 1096,
+        "train_groups": 767,
+        "valid_groups": 164,
+        "test_groups": 165
+      },
+      "2025": {
+        "groups": 1042,
+        "train_groups": 729,
+        "valid_groups": 156,
+        "test_groups": 157
+      }
+    }
+  },
+  "features": [
+    "gu_code",
+    "gu_name",
+    "ym",
+    "property_type",
+    "주택유형",
+    "유형",
+    "gu_property",
+    "gu_ym",
+    "property_ym",
+    "housing_type_ym",
+    "detail_type_ym",
+    "방갯수",
+    "area_m2",
+    "세대원수",
+    "rent_txn_count",
+    "jeonse_txn_count",
+    "rent_deposit_median",
+    "rent_deposit_mean",
+    "rent_deposit_per_m2_median",
+    "rent_deposit_per_m2_mean",
+    "monthly_rent_median",
+    "area_m2_median",
+    "sale_txn_count",
+    "sale_price_median",
+    "sale_price_mean",
+    "sale_price_per_m2_median",
+    "sale_price_per_m2_mean",
+    "sale_area_m2_median",
+    "is_ood_property_type",
+    "is_in_domain_property_type",
+    "is_exact_duplicate",
+    "area_missing_or_zero",
+    "area_too_small",
+    "area_review_large",
+    "area_too_large",
+    "room_missing",
+    "room_too_large",
+    "household_size_missing_or_zero",
+    "sale_feature_missing",
+    "sale_low_confidence",
+    "rent_feature_missing",
+    "area_m2_clean",
+    "room_count_clean",
+    "room_count_imputed",
+    "household_size_clean",
+    "household_size_imputed"
+  ],
+  "cat_cols": [
+    "gu_code",
+    "gu_name",
+    "ym",
+    "property_type",
+    "주택유형",
+    "유형",
+    "gu_property",
+    "gu_ym",
+    "property_ym",
+    "housing_type_ym",
+    "detail_type_ym"
+  ],
+  "num_cols": [
+    "방갯수",
+    "area_m2",
+    "세대원수",
+    "rent_txn_count",
+    "jeonse_txn_count",
+    "rent_deposit_median",
+    "rent_deposit_mean",
+    "rent_deposit_per_m2_median",
+    "rent_deposit_per_m2_mean",
+    "monthly_rent_median",
+    "area_m2_median",
+    "sale_txn_count",
+    "sale_price_median",
+    "sale_price_mean",
+    "sale_price_per_m2_median",
+    "sale_price_per_m2_mean",
+    "sale_area_m2_median",
+    "is_ood_property_type",
+    "is_in_domain_property_type",
+    "is_exact_duplicate",
+    "area_missing_or_zero",
+    "area_too_small",
+    "area_review_large",
+    "area_too_large",
+    "room_missing",
+    "room_too_large",
+    "household_size_missing_or_zero",
+    "sale_feature_missing",
+    "sale_low_confidence",
+    "rent_feature_missing",
+    "area_m2_clean",
+    "room_count_clean",
+    "room_count_imputed",
+    "household_size_clean",
+    "household_size_imputed"
+  ],
+  "alpha": 0.05,
+  "confidence_level": 0.95,
+  "conformal_log_abs_residual_quantile": 0.3613221348507589,
+  "interval_lookup": {
+    "alpha": 0.05,
+    "min_rows": 30,
+    "global_q": 0.3613221348507589,
+    "levels": [
+      {
+        "group_cols": [
+          "gu_name",
+          "property_type"
+        ],
+        "records": [
+          {
+            "key": [
+              "강남구",
+              "detached"
+            ],
+            "q": 0.5169638454540718,
+            "count": 171
+          },
+          {
+            "key": [
+              "강남구",
+              "rh"
+            ],
+            "q": 0.20629579819882643,
+            "count": 104
+          },
+          {
+            "key": [
+              "강동구",
+              "detached"
+            ],
+            "q": 0.3511649965691918,
+            "count": 288
+          },
+          {
+            "key": [
+              "강동구",
+              "rh"
+            ],
+            "q": 0.24455475545225794,
+            "count": 164
+          },
+          {
+            "key": [
+              "강북구",
+              "detached"
+            ],
+            "q": 0.5528535599933856,
+            "count": 346
+          },
+          {
+            "key": [
+              "강북구",
+              "rh"
+            ],
+            "q": 0.23004161372995313,
+            "count": 230
+          },
+          {
+            "key": [
+              "강서구",
+              "detached"
+            ],
+            "q": 0.544830779498929,
+            "count": 133
+          },
+          {
+            "key": [
+              "강서구",
+              "officetel"
+            ],
+            "q": 0.27121003051903486,
+            "count": 78
+          },
+          {
+            "key": [
+              "강서구",
+              "rh"
+            ],
+            "q": 0.19444559264742445,
+            "count": 785
+          },
+          {
+            "key": [
+              "관악구",
+              "detached"
+            ],
+            "q": 0.425036103391914,
+            "count": 378
+          },
+          {
+            "key": [
+              "관악구",
+              "officetel"
+            ],
+            "q": 0.33275634373794527,
+            "count": 127
+          },
+          {
+            "key": [
+              "관악구",
+              "rh"
+            ],
+            "q": 0.2542164879862315,
+            "count": 147
+          },
+          {
+            "key": [
+              "광진구",
+              "detached"
+            ],
+            "q": 0.428966499125268,
+            "count": 459
+          },
+          {
+            "key": [
+              "광진구",
+              "rh"
+            ],
+            "q": 0.1782106716067583,
+            "count": 82
+          },
+          {
+            "key": [
+              "구로구",
+              "apt"
+            ],
+            "q": 0.14875683721678024,
+            "count": 86
+          },
+          {
+            "key": [
+              "구로구",
+              "detached"
+            ],
+            "q": 0.3999811801877718,
+            "count": 82
+          },
+          {
+            "key": [
+              "구로구",
+              "officetel"
+            ],
+            "q": 0.2032048092592179,
+            "count": 226
+          },
+          {
+            "key": [
+              "구로구",
+              "rh"
+            ],
+            "q": 0.2837610683577994,
+            "count": 158
+          },
+          {
+            "key": [
+              "금천구",
+              "detached"
+            ],
+            "q": 0.429263529715343,
+            "count": 228
+          },
+          {
+            "key": [
+              "금천구",
+              "officetel"
+            ],
+            "q": 0.19586069330448957,
+            "count": 48
+          },
+          {
+            "key": [
+              "금천구",
+              "rh"
+            ],
+            "q": 0.23996662902268387,
+            "count": 42
+          },
+          {
+            "key": [
+              "노원구",
+              "apt"
+            ],
+            "q": 0.24080447556688048,
+            "count": 255
+          },
+          {
+            "key": [
+              "노원구",
+              "detached"
+            ],
+            "q": 0.4172231541724528,
+            "count": 125
+          },
+          {
+            "key": [
+              "노원구",
+              "rh"
+            ],
+            "q": 0.34217110852800203,
+            "count": 268
+          },
+          {
+            "key": [
+              "도봉구",
+              "apt"
+            ],
+            "q": 0.2087478949903745,
+            "count": 44
+          },
+          {
+            "key": [
+              "도봉구",
+              "detached"
+            ],
+            "q": 0.5045427604526985,
+            "count": 158
+          },
+          {
+            "key": [
+              "도봉구",
+              "officetel"
+            ],
+            "q": 0.37695869237320223,
+            "count": 30
+          },
+          {
+            "key": [
+              "도봉구",
+              "rh"
+            ],
+            "q": 0.17965143685529267,
+            "count": 90
+          },
+          {
+            "key": [
+              "동대문구",
+              "detached"
+            ],
+            "q": 0.5045039898851972,
+            "count": 191
+          },
+          {
+            "key": [
+              "동대문구",
+              "rh"
+            ],
+            "q": 0.22057710527019947,
+            "count": 59
+          },
+          {
+            "key": [
+              "동작구",
+              "detached"
+            ],
+            "q": 0.4444549503744969,
+            "count": 166
+          },
+          {
+            "key": [
+              "동작구",
+              "rh"
+            ],
+            "q": 0.2988184299914651,
+            "count": 125
+          },
+          {
+            "key": [
+              "마포구",
+              "detached"
+            ],
+            "q": 0.5819424534132621,
+            "count": 87
+          },
+          {
+            "key": [
+              "마포구",
+              "rh"
+            ],
+            "q": 0.1956682205872159,
+            "count": 103
+          },
+          {
+            "key": [
+              "서대문구",
+              "detached"
+            ],
+            "q": 0.4238382409787861,
+            "count": 84
+          },
+          {
+            "key": [
+              "서초구",
+              "detached"
+            ],
+            "q": 0.4194389856563594,
+            "count": 95
+          },
+          {
+            "key": [
+              "성동구",
+              "rh"
+            ],
+            "q": 0.15337465768684896,
+            "count": 30
+          },
+          {
+            "key": [
+              "성북구",
+              "detached"
+            ],
+            "q": 0.4233514654926075,
+            "count": 383
+          },
+          {
+            "key": [
+              "성북구",
+              "rh"
+            ],
+            "q": 0.19813162285460995,
+            "count": 51
+          },
+          {
+            "key": [
+              "송파구",
+              "detached"
+            ],
+            "q": 0.34328828404798456,
+            "count": 217
+          },
+          {
+            "key": [
+              "송파구",
+              "rh"
+            ],
+            "q": 0.2414741526879769,
+            "count": 221
+          },
+          {
+            "key": [
+              "양천구",
+              "detached"
+            ],
+            "q": 0.40524086954783856,
+            "count": 68
+          },
+          {
+            "key": [
+              "양천구",
+              "officetel"
+            ],
+            "q": 0.24459294074265486,
+            "count": 30
+          },
+          {
+            "key": [
+              "양천구",
+              "rh"
+            ],
+            "q": 0.18441777585866923,
+            "count": 356
+          },
+          {
+            "key": [
+              "영등포구",
+              "detached"
+            ],
+            "q": 0.3655674687173137,
+            "count": 71
+          },
+          {
+            "key": [
+              "영등포구",
+              "officetel"
+            ],
+            "q": 0.1626341191480484,
+            "count": 83
+          },
+          {
+            "key": [
+              "영등포구",
+              "rh"
+            ],
+            "q": 0.24122805546304404,
+            "count": 51
+          },
+          {
+            "key": [
+              "용산구",
+              "detached"
+            ],
+            "q": 0.3757953749482374,
+            "count": 232
+          },
+          {
+            "key": [
+              "은평구",
+              "detached"
+            ],
+            "q": 0.4714364654240174,
+            "count": 340
+          },
+          {
+            "key": [
+              "은평구",
+              "rh"
+            ],
+            "q": 0.19935367828098624,
+            "count": 507
+          },
+          {
+            "key": [
+              "종로구",
+              "detached"
+            ],
+            "q": 0.36962486087757246,
+            "count": 52
+          },
+          {
+            "key": [
+              "중랑구",
+              "detached"
+            ],
+            "q": 0.6057492427650846,
+            "count": 286
+          },
+          {
+            "key": [
+              "중랑구",
+              "officetel"
+            ],
+            "q": 0.2032817988451151,
+            "count": 35
+          },
+          {
+            "key": [
+              "중랑구",
+              "rh"
+            ],
+            "q": 0.19066204879313095,
+            "count": 126
+          }
+        ]
+      },
+      {
+        "group_cols": [
+          "property_type"
+        ],
+        "records": [
+          {
+            "key": [
+              "apt"
+            ],
+            "q": 0.22047229405382604,
+            "count": 556
+          },
+          {
+            "key": [
+              "detached"
+            ],
+            "q": 0.44554722101384225,
+            "count": 4676
+          },
+          {
+            "key": [
+              "officetel"
+            ],
+            "q": 0.29037143332342286,
+            "count": 861
+          },
+          {
+            "key": [
+              "rh"
+            ],
+            "q": 0.22887424607668508,
+            "count": 3788
+          }
+        ]
+      },
+      {
+        "group_cols": [
+          "gu_name"
+        ],
+        "records": [
+          {
+            "key": [
+              "강남구"
+            ],
+            "q": 0.3810395039239094,
+            "count": 292
+          },
+          {
+            "key": [
+              "강동구"
+            ],
+            "q": 0.3317023675165494,
+            "count": 474
+          },
+          {
+            "key": [
+              "강북구"
+            ],
+            "q": 0.4570498724123884,
+            "count": 594
+          },
+          {
+            "key": [
+              "강서구"
+            ],
+            "q": 0.23797291985007923,
+            "count": 1024
+          },
+          {
+            "key": [
+              "관악구"
+            ],
+            "q": 0.3558079710297017,
+            "count": 663
+          },
+          {
+            "key": [
+              "광진구"
+            ],
+            "q": 0.41288899536521784,
+            "count": 550
+          },
+          {
+            "key": [
+              "구로구"
+            ],
+            "q": 0.2870943496691375,
+            "count": 552
+          },
+          {
+            "key": [
+              "금천구"
+            ],
+            "q": 0.4124209892085135,
+            "count": 323
+          },
+          {
+            "key": [
+              "노원구"
+            ],
+            "q": 0.33921113109533724,
+            "count": 658
+          },
+          {
+            "key": [
+              "도봉구"
+            ],
+            "q": 0.43076708082742293,
+            "count": 322
+          },
+          {
+            "key": [
+              "동대문구"
+            ],
+            "q": 0.46464451664909023,
+            "count": 275
+          },
+          {
+            "key": [
+              "동작구"
+            ],
+            "q": 0.3941807462993733,
+            "count": 296
+          },
+          {
+            "key": [
+              "마포구"
+            ],
+            "q": 0.37287474918511604,
+            "count": 208
+          },
+          {
+            "key": [
+              "서대문구"
+            ],
+            "q": 0.38308859674165485,
+            "count": 125
+          },
+          {
+            "key": [
+              "서초구"
+            ],
+            "q": 0.3113444612742142,
+            "count": 138
+          },
+          {
+            "key": [
+              "성동구"
+            ],
+            "q": 0.3986973126720624,
+            "count": 56
+          },
+          {
+            "key": [
+              "성북구"
+            ],
+            "q": 0.38696777609985417,
+            "count": 466
+          },
+          {
+            "key": [
+              "송파구"
+            ],
+            "q": 0.3191202824921244,
+            "count": 455
+          },
+          {
+            "key": [
+              "양천구"
+            ],
+            "q": 0.23915199705585594,
+            "count": 465
+          },
+          {
+            "key": [
+              "영등포구"
+            ],
+            "q": 0.32364986190344963,
+            "count": 210
+          },
+          {
+            "key": [
+              "용산구"
+            ],
+            "q": 0.3600091568657968,
+            "count": 265
+          },
+          {
+            "key": [
+              "은평구"
+            ],
+            "q": 0.3650385443929556,
+            "count": 881
+          },
+          {
+            "key": [
+              "종로구"
+            ],
+            "q": 0.3181177391330732,
+            "count": 75
+          },
+          {
+            "key": [
+              "중구"
+            ],
+            "q": 0.3032476705276942,
+            "count": 47
+          },
+          {
+            "key": [
+              "중랑구"
+            ],
+            "q": 0.43476946398687805,
+            "count": 467
+          }
+        ]
+      }
+    ]
+  },
+  "valid": {
+    "rmse": 0.18253998255502343,
+    "mae": 0.1296318612589384,
+    "r2": 0.9255789383960201
+  },
+  "test": {
+    "rmse": 0.18145869356836822,
+    "mae": 0.13075942035795476,
+    "r2": 0.9309482203205494
+  },
+  "model_path": "res/final_model/catboost_final.cbm",
+  "artifacts_path": "res/final_model/artifacts.joblib",
+  "cluster_rule": {
+    "n_clusters": 6,
+    "min_cluster_rows": 500,
+    "small_clusters_are_merged_to_nearest_large_cluster": true
+  },
+  "risk_rule": {
+    "needs_deposit_won_for_overprice_risk": true,
+    "risk_index": "0.65 * overprice_score + 0.35 * anomaly_percentile",
+    "labels": {
+      "0-39": "safe",
+      "40-59": "fair",
+      "60-79": "caution",
+      "80-100": "high_risk"
+    }
+  }
+}

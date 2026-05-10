@@ -1,0 +1,22 @@
+{
+  "equal": {
+    "pred_catboost": 0.125,
+    "pred_lgbm": 0.125,
+    "pred_xgboost": 0.125,
+    "pred_optuna_lgbm": 0.125,
+    "catboost_pred": 0.125,
+    "lgbm_pred": 0.125,
+    "stacking_pred": 0.125,
+    "xgboost_pred": 0.125
+  },
+  "optimized": {
+    "pred_catboost": 0.13765861832753054,
+    "pred_lgbm": 0.055270586052987986,
+    "pred_xgboost": 0.0645266102932365,
+    "pred_optuna_lgbm": 0.4850891228028309,
+    "catboost_pred": 0.13765855492815818,
+    "lgbm_pred": 0.055269897302019255,
+    "stacking_pred": 0.0,
+    "xgboost_pred": 0.06452661029323666
+  }
+}

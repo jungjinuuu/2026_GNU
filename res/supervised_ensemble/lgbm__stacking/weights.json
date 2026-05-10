@@ -1,0 +1,10 @@
+{
+  "equal": {
+    "pred_lgbm": 0.5,
+    "pred_stacking": 0.5
+  },
+  "optimized": {
+    "pred_lgbm": 0.39378442654591894,
+    "pred_stacking": 0.6062155734540811
+  }
+}

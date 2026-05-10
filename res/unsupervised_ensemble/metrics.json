@@ -1,0 +1,254 @@
+{
+  "outputs": {
+    "supervised_ensemble": {
+      "base_column": "pred_supervised_ensemble",
+      "uses_unsupervised_features": false,
+      "prediction_target_metrics": {
+        "rmse": 0.1825851699449184,
+        "mae": 0.13112703711231946,
+        "r2": 0.9300882269173577
+      },
+      "risk_judgment_metrics": {
+        "risk_spearman": 0.9478657044855173,
+        "risk_pearson": 0.9396360312859133,
+        "top10_capture_rate": 0.670704845814978,
+        "top20_capture_rate": 0.8231404958677686
+      },
+      "price_column": "predicted_fair_deposit_won_supervised_ensemble",
+      "risk_index_column": "risk_judgment_index_supervised_ensemble",
+      "risk_label_column": "risk_label_supervised_ensemble",
+      "risk_index_formula": "100 * (0.85 * predicted_ratio_percentile + 0.15 * model_disagreement_percentile)"
+    },
+    "unsupervised_supervised_ensemble": {
+      "base_column": "pred_supervised_ensemble",
+      "uses_unsupervised_features": true,
+      "prediction_target_metrics": {
+        "rmse": 0.1825851699449184,
+        "mae": 0.13112703711231946,
+        "r2": 0.9300882269173577
+      },
+      "risk_judgment_metrics": {
+        "risk_spearman": 0.8620995568833214,
+        "risk_pearson": 0.8579668105961492,
+        "top10_capture_rate": 0.4988986784140969,
+        "top20_capture_rate": 0.6931129476584023
+      },
+      "price_column": "predicted_fair_deposit_won_unsupervised_supervised_ensemble",
+      "risk_index_column": "risk_judgment_index_unsupervised_supervised_ensemble",
+      "risk_label_column": "risk_label_unsupervised_supervised_ensemble",
+      "risk_index_formula": "100 * (0.60 * predicted_ratio_percentile + 0.30 * unsupervised_risk_percentile + 0.10 * model_disagreement_percentile)"
+    },
+    "stacking": {
+      "base_column": "pred_stacking",
+      "uses_unsupervised_features": false,
+      "prediction_target_metrics": {
+        "rmse": 0.18374868914138626,
+        "mae": 0.13070657736595725,
+        "r2": 0.929194366037761
+      },
+      "risk_judgment_metrics": {
+        "risk_spearman": 0.9477897101336842,
+        "risk_pearson": 0.9395247502378449,
+        "top10_capture_rate": 0.670704845814978,
+        "top20_capture_rate": 0.8209366391184573
+      },
+      "price_column": "predicted_fair_deposit_won_stacking",
+      "risk_index_column": "risk_judgment_index_stacking",
+      "risk_label_column": "risk_label_stacking",
+      "risk_index_formula": "100 * (0.85 * predicted_ratio_percentile + 0.15 * model_disagreement_percentile)"
+    },
+    "unsupervised_stacking": {
+      "base_column": "pred_stacking",
+      "uses_unsupervised_features": true,
+      "prediction_target_metrics": {
+        "rmse": 0.18374868914138626,
+        "mae": 0.13070657736595725,
+        "r2": 0.929194366037761
+      },
+      "risk_judgment_metrics": {
+        "risk_spearman": 0.8624565466669742,
+        "risk_pearson": 0.8582951126466998,
+        "top10_capture_rate": 0.4966960352422907,
+        "top20_capture_rate": 0.6920110192837465
+      },
+      "price_column": "predicted_fair_deposit_won_unsupervised_stacking",
+      "risk_index_column": "risk_judgment_index_unsupervised_stacking",
+      "risk_label_column": "risk_label_unsupervised_stacking",
+      "risk_index_formula": "100 * (0.60 * predicted_ratio_percentile + 0.30 * unsupervised_risk_percentile + 0.10 * model_disagreement_percentile)"
+    }
+  },
+  "target": "log1p_lh_vs_rent_median_ratio_winsor",
+  "attach_unsupervised_to": "both",
+  "method": "separate_price_prediction_and_risk_judgment",
+  "rows": {
+    "valid": 9881,
+    "test": 9074
+  },
+  "base_output_metrics": {
+    "pred_catboost": {
+      "rmse": 0.1822482923048892,
+      "mae": 0.13157319038254786,
+      "r2": 0.9303459694948302
+    },
+    "pred_lgbm": {
+      "rmse": 0.1859085116466475,
+      "mae": 0.1326391466738368,
+      "r2": 0.9275200534232623
+    },
+    "pred_xgboost": {
+      "rmse": 0.18444265364473356,
+      "mae": 0.13222000630900205,
+      "r2": 0.9286585321873004
+    },
+    "pred_supervised_ensemble": {
+      "rmse": 0.1825851699449184,
+      "mae": 0.13112703711231946,
+      "r2": 0.9300882269173577
+    },
+    "pred_stacking": {
+      "rmse": 0.18374868914138626,
+      "mae": 0.13070657736595725,
+      "r2": 0.929194366037761
+    }
+  },
+  "risk_score_diagnostics": {
+    "valid": {
+      "pred_supervised_ensemble": {
+        "corr_risk_target": -0.0007429138711205674,
+        "corr_risk_residual": 0.021370050771531715,
+        "low_risk_residual_mean": 0.0016515671114123933,
+        "high_risk_residual_mean": 0.010278392587416743,
+        "low_risk_abs_residual_mean": 0.12954822305757355,
+        "high_risk_abs_residual_mean": 0.1268158626730079
+      },
+      "pred_stacking": {
+        "corr_risk_target": -0.0007429138711205674,
+        "corr_risk_residual": 0.024044748290036208,
+        "low_risk_residual_mean": -0.008283737215427588,
+        "high_risk_residual_mean": 0.0005247019629681739,
+        "low_risk_abs_residual_mean": 0.12920023741370484,
+        "high_risk_abs_residual_mean": 0.12535654710336241
+      }
+    },
+    "test": {
+      "pred_supervised_ensemble": {
+        "corr_risk_target": -0.051664410392497945,
+        "corr_risk_residual": -0.007677131348317275,
+        "low_risk_residual_mean": 0.004186797901316374,
+        "high_risk_residual_mean": -0.005155281644435262,
+        "low_risk_abs_residual_mean": 0.13860559504960482,
+        "high_risk_abs_residual_mean": 0.120990531186229
+      },
+      "pred_stacking": {
+        "corr_risk_target": -0.051664410392497945,
+        "corr_risk_residual": -0.005249365649551934,
+        "low_risk_residual_mean": -0.006966905027677682,
+        "high_risk_residual_mean": -0.01601040938515919,
+        "low_risk_abs_residual_mean": 0.13795161823987506,
+        "high_risk_abs_residual_mean": 0.12096637310469598
+      }
+    }
+  },
+  "feature_groups": {
+    "tree_base_predictions": [
+      "pred_catboost",
+      "pred_lgbm",
+      "pred_xgboost"
+    ],
+    "supervised_ensemble_output": [
+      "pred_supervised_ensemble"
+    ],
+    "stacking_output": [
+      "pred_stacking"
+    ],
+    "unsupervised_scores": [
+      "cluster_distance",
+      "robust_z",
+      "isolation_score"
+    ]
+  },
+  "selected_prediction_outputs": [
+    "pred_supervised_ensemble",
+    "pred_stacking"
+  ],
+  "tree_prediction_columns": [
+    "pred_catboost",
+    "pred_lgbm",
+    "pred_xgboost"
+  ],
+  "supervised_ensemble_weights": {
+    "pred_catboost": 0.4294120298567192,
+    "pred_lgbm": 0.34571455042480587,
+    "pred_xgboost": 0.22487341971847497
+  },
+  "stacking_columns": [
+    "pred_stacking"
+  ],
+  "unsupervised_columns": [
+    "cluster_distance",
+    "robust_z",
+    "isolation_score"
+  ],
+  "unsupervised_score": {
+    "score_parts": {
+      "cluster_distance": {
+        "weight": 1.0,
+        "median": 3.492799752742007,
+        "scale": 1.1214849780813743
+      },
+      "robust_z": {
+        "weight": 1.0,
+        "median": 0.010869146158724,
+        "scale": 1.4200240935517892
+      },
+      "isolation_score": {
+        "weight": 1.0,
+        "median": -0.0512940863099682,
+        "scale": 0.022555310247599998
+      }
+    },
+    "final_score_center": 0.0951782042954813,
+    "final_score_scale": 2.6099948245034117,
+    "final_score_clip": 5.0,
+    "valid_raw_score_summary": {
+      "count": 9881.0,
+      "mean": 0.1616181742217018,
+      "std": 0.8806150821782247,
+      "min": -1.3911621288114446,
+      "25%": -0.43883385553809046,
+      "50%": 0.0,
+      "75%": 0.5611661444619096,
+      "max": 7.167933430953986
+    },
+    "test_raw_score_summary": {
+      "count": 9074.0,
+      "mean": 25806.677475471526,
+      "std": 2458265.4670706163,
+      "min": -1.328444670817029,
+      "25%": -0.415927563816609,
+      "50%": -0.003664306507334421,
+      "75%": 0.5246905448762672,
+      "max": 234168335.06770894
+    },
+    "valid_clipped_score_summary": {
+      "count": 9881.0,
+      "mean": 0.16047095467124234,
+      "std": 0.8732371215787494,
+      "min": -1.3911621288114446,
+      "25%": -0.43883385553809046,
+      "50%": 0.0,
+      "75%": 0.5611661444619096,
+      "max": 5.0
+    },
+    "test_clipped_score_summary": {
+      "count": 9074.0,
+      "mean": 0.1580146651395971,
+      "std": 0.8474597732864304,
+      "min": -1.328444670817029,
+      "25%": -0.415927563816609,
+      "50%": -0.003664306507334421,
+      "75%": 0.5246905448762672,
+      "max": 5.0
+    }
+  }
+}

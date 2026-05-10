@@ -1,0 +1,10 @@
+{
+  "equal": {
+    "pred_optuna_lgbm": 0.5,
+    "pred_stacking": 0.5
+  },
+  "optimized": {
+    "pred_optuna_lgbm": 0.7075523032284567,
+    "pred_stacking": 0.2924476967715432
+  }
+}

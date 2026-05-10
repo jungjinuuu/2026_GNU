@@ -1,0 +1,142 @@
+{
+  "methods": [
+    "tree_models",
+    "optuna",
+    "stacking"
+  ],
+  "run_name": "xgboost__stacking",
+  "validation": {
+    "input_rows": 9881,
+    "prediction_columns": [
+      "pred_xgboost",
+      "pred_stacking"
+    ],
+    "weights": {
+      "equal": {
+        "pred_xgboost": 0.5,
+        "pred_stacking": 0.5
+      },
+      "optimized": {
+        "pred_xgboost": 0.30431026947251505,
+        "pred_stacking": 0.695689730527485
+      }
+    },
+    "models": {
+      "xgboost": {
+        "log_scale": {
+          "rmse": 0.18433904995680434,
+          "mae": 0.13100702619456764,
+          "r2": 0.92410475953945
+        },
+        "ratio_scale": {
+          "ratio_rmse": 1.173427019700242,
+          "ratio_mae": 0.6968849115319923,
+          "ratio_mean_error": 0.11857975099924811
+        }
+      },
+      "stacking": {
+        "log_scale": {
+          "rmse": 0.18381410750364285,
+          "mae": 0.12959340990081436,
+          "r2": 0.9245363979429079
+        },
+        "ratio_scale": {
+          "ratio_rmse": 1.1455484224822199,
+          "ratio_mae": 0.6845028838382702,
+          "ratio_mean_error": 0.024590639587599775
+        }
+      },
+      "ensemble_equal": {
+        "log_scale": {
+          "rmse": 0.18374113524787142,
+          "mae": 0.13008896244403534,
+          "r2": 0.9245963025528958
+        },
+        "ratio_scale": {
+          "ratio_rmse": 1.1563596909589198,
+          "ratio_mae": 0.689377880046066,
+          "ratio_mean_error": 0.07205672860092817
+        }
+      },
+      "ensemble_weighted": {
+        "log_scale": {
+          "rmse": 0.18368967279539875,
+          "mae": 0.12984213659477795,
+          "r2": 0.9246385349661104
+        },
+        "ratio_scale": {
+          "ratio_rmse": 1.1513355429528027,
+          "ratio_mae": 0.6871389790837522,
+          "ratio_mean_error": 0.05359334247626412
+        }
+      }
+    }
+  },
+  "test": {
+    "input_rows": 9074,
+    "prediction_columns": [
+      "pred_xgboost",
+      "pred_stacking"
+    ],
+    "weights": {
+      "equal": {
+        "pred_xgboost": 0.5,
+        "pred_stacking": 0.5
+      },
+      "optimized": {
+        "pred_xgboost": 0.30431026947251505,
+        "pred_stacking": 0.695689730527485
+      }
+    },
+    "models": {
+      "xgboost": {
+        "log_scale": {
+          "rmse": 0.18444265364473356,
+          "mae": 0.13222000630900205,
+          "r2": 0.9286585321873004
+        },
+        "ratio_scale": {
+          "ratio_rmse": 1.2075783596809653,
+          "ratio_mae": 0.7129082694703345,
+          "ratio_mean_error": 0.09710848859125111
+        }
+      },
+      "stacking": {
+        "log_scale": {
+          "rmse": 0.18374868914138626,
+          "mae": 0.13070657736595725,
+          "r2": 0.929194366037761
+        },
+        "ratio_scale": {
+          "ratio_rmse": 1.1845800256899106,
+          "ratio_mae": 0.7003663847955511,
+          "ratio_mean_error": 0.00900872705046666
+        }
+      },
+      "ensemble_equal": {
+        "log_scale": {
+          "rmse": 0.18380858158084884,
+          "mae": 0.13126592940484902,
+          "r2": 0.9291482006660017
+        },
+        "ratio_scale": {
+          "ratio_rmse": 1.1931855425451197,
+          "ratio_mae": 0.7054433315955236,
+          "ratio_mean_error": 0.053469282043075134
+        }
+      },
+      "ensemble_weighted": {
+        "log_scale": {
+          "rmse": 0.18371660505282944,
+          "mae": 0.13099911941085354,
+          "r2": 0.9292190904143961
+        },
+        "ratio_scale": {
+          "ratio_rmse": 1.1890969419796884,
+          "ratio_mae": 0.7031541301391269,
+          "ratio_mean_error": 0.036167124882464534
+        }
+      }
+    }
+  }
+}

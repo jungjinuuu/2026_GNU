@@ -1,0 +1,10 @@
+{
+  "equal": {
+    "pred_catboost_optuna": 0.5,
+    "pred_stacking": 0.5
+  },
+  "optimized": {
+    "pred_catboost_optuna": 0.7982627643929426,
+    "pred_stacking": 0.2017372356070573
+  }
+}

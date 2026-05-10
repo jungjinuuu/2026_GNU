@@ -1,0 +1,10 @@
+{
+  "equal": {
+    "pred_catboost": 0.5,
+    "pred_xgboost": 0.5
+  },
+  "optimized": {
+    "pred_catboost": 0.5457875708461357,
+    "pred_xgboost": 0.4542124291538644
+  }
+}

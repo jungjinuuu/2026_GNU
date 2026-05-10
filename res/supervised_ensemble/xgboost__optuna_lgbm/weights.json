@@ -1,0 +1,10 @@
+{
+  "equal": {
+    "pred_xgboost": 0.5,
+    "pred_optuna_lgbm": 0.5
+  },
+  "optimized": {
+    "pred_xgboost": 0.2454596750571078,
+    "pred_optuna_lgbm": 0.7545403249428922
+  }
+}

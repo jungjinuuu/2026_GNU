@@ -1,0 +1,327 @@
+{
+  "target": "log1p_lh_vs_rent_median_ratio_winsor",
+  "split": {
+    "strategy": "year_stratified_group_split",
+    "group_cols": [
+      "gu_code",
+      "ym",
+      "property_type"
+    ],
+    "train_size": 0.7,
+    "valid_size": 0.15,
+    "test_size": 0.15,
+    "random_state": 42,
+    "rows": {
+      "train": 45477,
+      "valid": 9881,
+      "test": 9074
+    },
+    "years": {
+      "2022": {
+        "groups": 541,
+        "train_groups": 378,
+        "valid_groups": 81,
+        "test_groups": 82
+      },
+      "2023": {
+        "groups": 554,
+        "train_groups": 387,
+        "valid_groups": 83,
+        "test_groups": 84
+      },
+      "2024": {
+        "groups": 1096,
+        "train_groups": 767,
+        "valid_groups": 164,
+        "test_groups": 165
+      },
+      "2025": {
+        "groups": 1042,
+        "train_groups": 729,
+        "valid_groups": 156,
+        "test_groups": 157
+      }
+    },
+    "n_folds": 5
+  },
+  "features": {
+    "count": 41,
+    "categorical": [
+      "gu_code",
+      "gu_name",
+      "ym",
+      "property_type",
+      "주택유형",
+      "유형"
+    ],
+    "numeric": [
+      "방갯수",
+      "area_m2",
+      "세대원수",
+      "rent_txn_count",
+      "jeonse_txn_count",
+      "rent_deposit_median",
+      "rent_deposit_mean",
+      "rent_deposit_per_m2_median",
+      "rent_deposit_per_m2_mean",
+      "monthly_rent_median",
+      "area_m2_median",
+      "sale_txn_count",
+      "sale_price_median",
+      "sale_price_mean",
+      "sale_price_per_m2_median",
+      "sale_price_per_m2_mean",
+      "sale_area_m2_median",
+      "is_ood_property_type",
+      "is_in_domain_property_type",
+      "is_exact_duplicate",
+      "area_missing_or_zero",
+      "area_too_small",
+      "area_review_large",
+      "area_too_large",
+      "room_missing",
+      "room_too_large",
+      "household_size_missing_or_zero",
+      "sale_feature_missing",
+      "sale_low_confidence",
+      "rent_feature_missing",
+      "area_m2_clean",
+      "room_count_clean",
+      "room_count_imputed",
+      "household_size_clean",
+      "household_size_imputed"
+    ]
+  },
+  "oof": {
+    "folds": [
+      {
+        "fold": 1,
+        "valid_months": [
+          "2022-01",
+          "2022-02",
+          "2022-03",
+          "2022-04",
+          "2022-05",
+          "2022-06",
+          "2022-07",
+          "2022-08",
+          "2022-09",
+          "2022-10"
+        ],
+        "train_rows": 44617,
+        "valid_rows": 860,
+        "models": {
+          "lgbm": {
+            "rmse": 0.16414334841393546,
+            "mae": 0.11968517399000574,
+            "r2": 0.9179017480882984
+          },
+          "catboost": {
+            "rmse": 0.15115397525440166,
+            "mae": 0.10904675701048142,
+            "r2": 0.9303812085875772
+          },
+          "xgboost": {
+            "rmse": 0.1617613089539882,
+            "mae": 0.11769425874754613,
+            "r2": 0.9202672693251402
+          }
+        }
+      },
+      {
+        "fold": 2,
+        "valid_months": [
+          "2022-11",
+          "2022-12",
+          "2023-01",
+          "2023-02",
+          "2023-03",
+          "2023-04",
+          "2023-05",
+          "2023-06",
+          "2023-07",
+          "2023-08"
+        ],
+        "train_rows": 45092,
+        "valid_rows": 385,
+        "models": {
+          "lgbm": {
+            "rmse": 0.191199639396584,
+            "mae": 0.13709073836505858,
+            "r2": 0.9076727521144212
+          },
+          "catboost": {
+            "rmse": 0.1873651532578033,
+            "mae": 0.13692498308409468,
+            "r2": 0.9113388423123452
+          },
+          "xgboost": {
+            "rmse": 0.18888532515492026,
+            "mae": 0.13614266250538437,
+            "r2": 0.9098943158140764
+          }
+        }
+      },
+      {
+        "fold": 3,
+        "valid_months": [
+          "2023-09",
+          "2023-10",
+          "2023-11",
+          "2023-12",
+          "2024-01",
+          "2024-02",
+          "2024-03",
+          "2024-04",
+          "2024-05",
+          "2024-06"
+        ],
+        "train_rows": 33280,
+        "valid_rows": 12197,
+        "models": {
+          "lgbm": {
+            "rmse": 0.17946617482128596,
+            "mae": 0.1297059265534081,
+            "r2": 0.9222077022282155
+          },
+          "catboost": {
+            "rmse": 0.18653139425641535,
+            "mae": 0.13856331553652046,
+            "r2": 0.9159620867478249
+          },
+          "xgboost": {
+            "rmse": 0.17825138211417205,
+            "mae": 0.12867701835560713,
+            "r2": 0.9232572780533755
+          }
+        }
+      },
+      {
+        "fold": 4,
+        "valid_months": [
+          "2024-07",
+          "2024-08",
+          "2024-09",
+          "2024-10",
+          "2024-11",
+          "2024-12",
+          "2025-01",
+          "2025-02",
+          "2025-03"
+        ],
+        "train_rows": 28494,
+        "valid_rows": 16983,
+        "models": {
+          "lgbm": {
+            "rmse": 0.17544641744275996,
+            "mae": 0.12499988883481361,
+            "r2": 0.9288754983031128
+          },
+          "catboost": {
+            "rmse": 0.1793512315133479,
+            "mae": 0.13231461218550378,
+            "r2": 0.9256743092679646
+          },
+          "xgboost": {
+            "rmse": 0.17299841684633468,
+            "mae": 0.12366191827800853,
+            "r2": 0.9308464490766709
+          }
+        }
+      },
+      {
+        "fold": 5,
+        "valid_months": [
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "train_rows": 30425,
+        "valid_rows": 15052,
+        "models": {
+          "lgbm": {
+            "rmse": 0.18583102215553823,
+            "mae": 0.13392326338710173,
+            "r2": 0.9344544853784373
+          },
+          "catboost": {
+            "rmse": 0.197945497870639,
+            "mae": 0.14929465196851394,
+            "r2": 0.9256299962920465
+          },
+          "xgboost": {
+            "rmse": 0.18358575452868967,
+            "mae": 0.13254654809164831,
+            "r2": 0.9360287990804594
+          }
+        }
+      }
+    ],
+    "available_models": [
+      "lgbm",
+      "catboost",
+      "xgboost"
+    ],
+    "model_errors": {}
+  },
+  "valid_base_models": {
+    "lgbm": {
+      "rmse": 0.18431929549222376,
+      "mae": 0.1308637256055685,
+      "r2": 0.924121025105603
+    },
+    "catboost": {
+      "rmse": 0.18402986951028294,
+      "mae": 0.1312801303699409,
+      "r2": 0.9243591347884701
+    },
+    "xgboost": {
+      "rmse": 0.18433905027144565,
+      "mae": 0.13100702600270184,
+      "r2": 0.9241047592803647
+    }
+  },
+  "test_base_models": {
+    "lgbm": {
+      "rmse": 0.1859085116466475,
+      "mae": 0.1326391466738368,
+      "r2": 0.9275200534232623
+    },
+    "catboost": {
+      "rmse": 0.1822482923048892,
+      "mae": 0.13157319038254786,
+      "r2": 0.9303459694948302
+    },
+    "xgboost": {
+      "rmse": 0.18444265375087013,
+      "mae": 0.13222000622566732,
+      "r2": 0.9286585321051943
+    }
+  },
+  "meta_model": {
+    "model": "RidgeCV",
+    "alpha": 1.0,
+    "intercept": -0.009998393717252752,
+    "coef": {
+      "lgbm": 0.18229805707543,
+      "catboost": 0.27070910887432653,
+      "xgboost": 0.5638339101957701
+    }
+  },
+  "valid_stacking": {
+    "rmse": 0.18381410750364283,
+    "mae": 0.12959340990081436,
+    "r2": 0.9245363979429079
+  },
+  "test_stacking": {
+    "rmse": 0.18374868914138626,
+    "mae": 0.13070657736595723,
+    "r2": 0.929194366037761
+  }
+}

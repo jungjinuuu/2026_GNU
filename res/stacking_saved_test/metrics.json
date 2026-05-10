@@ -1,0 +1,33 @@
+{
+  "target": "log1p_lh_vs_rent_median_ratio_winsor",
+  "mode": "saved_prediction_stacking",
+  "base_prediction_columns": [
+    "pred_lgbm",
+    "pred_xgboost"
+  ],
+  "meta_model": {
+    "model": "RidgeCV",
+    "alpha": 10.0,
+    "intercept": 0.003609393770785063,
+    "coef": {
+      "pred_lgbm": 0.49985942704396047,
+      "pred_xgboost": 0.4990224397202979
+    }
+  },
+  "valid_stacking": {
+    "rmse": 0.18354205151407574,
+    "mae": 0.13030142677474743,
+    "r2": 0.9247596140186665
+  },
+  "test_stacking": {
+    "rmse": 0.18449278061419822,
+    "mae": 0.13180968060081083,
+    "r2": 0.9286197492110184
+  },
+  "split": {
+    "rows": {
+      "valid": 9881,
+      "test": 9074
+    }
+  }
+}

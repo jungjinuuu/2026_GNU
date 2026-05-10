@@ -1,0 +1,14 @@
+{
+  "equal": {
+    "pred_catboost": 0.25,
+    "pred_lgbm": 0.25,
+    "pred_xgboost": 0.25,
+    "pred_catboost_optuna": 0.25
+  },
+  "optimized": {
+    "pred_catboost": 0.0,
+    "pred_lgbm": 0.25703389491016626,
+    "pred_xgboost": 0.059283997723837946,
+    "pred_catboost_optuna": 0.6836821073659958
+  }
+}

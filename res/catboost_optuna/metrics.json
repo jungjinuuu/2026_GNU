@@ -1,0 +1,160 @@
+{
+  "target": "log1p_lh_vs_rent_median_ratio_winsor",
+  "model": "catboost_optuna",
+  "split": {
+    "strategy": "year_stratified_group_split",
+    "group_cols": [
+      "gu_code",
+      "ym",
+      "property_type"
+    ],
+    "train_size": 0.7,
+    "valid_size": 0.15,
+    "test_size": 0.15,
+    "random_state": 42,
+    "rows": {
+      "train": 45477,
+      "valid": 9881,
+      "test": 9074
+    },
+    "years": {
+      "2022": {
+        "groups": 541,
+        "train_groups": 378,
+        "valid_groups": 81,
+        "test_groups": 82
+      },
+      "2023": {
+        "groups": 554,
+        "train_groups": 387,
+        "valid_groups": 83,
+        "test_groups": 84
+      },
+      "2024": {
+        "groups": 1096,
+        "train_groups": 767,
+        "valid_groups": 164,
+        "test_groups": 165
+      },
+      "2025": {
+        "groups": 1042,
+        "train_groups": 729,
+        "valid_groups": 156,
+        "test_groups": 157
+      }
+    }
+  },
+  "features": {
+    "count": 46,
+    "categorical": [
+      "gu_code",
+      "gu_name",
+      "ym",
+      "property_type",
+      "주택유형",
+      "유형",
+      "gu_property",
+      "gu_ym",
+      "property_ym",
+      "housing_type_ym",
+      "detail_type_ym"
+    ],
+    "numeric": [
+      "방갯수",
+      "area_m2",
+      "세대원수",
+      "rent_txn_count",
+      "jeonse_txn_count",
+      "rent_deposit_median",
+      "rent_deposit_mean",
+      "rent_deposit_per_m2_median",
+      "rent_deposit_per_m2_mean",
+      "monthly_rent_median",
+      "area_m2_median",
+      "sale_txn_count",
+      "sale_price_median",
+      "sale_price_mean",
+      "sale_price_per_m2_median",
+      "sale_price_per_m2_mean",
+      "sale_area_m2_median",
+      "is_ood_property_type",
+      "is_in_domain_property_type",
+      "is_exact_duplicate",
+      "area_missing_or_zero",
+      "area_too_small",
+      "area_review_large",
+      "area_too_large",
+      "room_missing",
+      "room_too_large",
+      "household_size_missing_or_zero",
+      "sale_feature_missing",
+      "sale_low_confidence",
+      "rent_feature_missing",
+      "area_m2_clean",
+      "room_count_clean",
+      "room_count_imputed",
+      "household_size_clean",
+      "household_size_imputed"
+    ],
+    "excluded": [
+      "contract_date",
+      "deposit_per_m2",
+      "deposit_per_m2_clean",
+      "deposit_per_m2_clean_winsor",
+      "deposit_won",
+      "jeonse_to_sale_ratio_gt_1",
+      "jeonse_to_sale_ratio_median",
+      "jeonse_to_sale_ratio_median_winsor",
+      "lh_vs_rent_median_ratio",
+      "lh_vs_rent_median_ratio_winsor",
+      "lh_vs_sale_median_ratio",
+      "lh_vs_sale_median_ratio_winsor",
+      "lh_vs_sale_ratio_gt_1",
+      "log1p_deposit_per_m2_clean_winsor",
+      "log1p_jeonse_to_sale_ratio_median_winsor",
+      "log1p_lh_vs_rent_median_ratio_winsor",
+      "log1p_lh_vs_sale_median_ratio_winsor",
+      "monthly_rent_won",
+      "support_ratio",
+      "support_ratio_low",
+      "support_won",
+      "tenant_deposit_won",
+      "주소"
+    ],
+    "combo_features": true
+  },
+  "study": {
+    "n_trials": 100,
+    "best_value": 0.18253998255502343,
+    "best_params": {
+      "bootstrap_type": "MVS",
+      "iterations": 1855,
+      "learning_rate": 0.06753518827493067,
+      "depth": 6,
+      "l2_leaf_reg": 7.810508704437983,
+      "random_strength": 0.07005169478946843,
+      "border_count": 192,
+      "min_data_in_leaf": 67,
+      "subsample": 0.7394376063146242
+    },
+    "loss_function": "RMSE"
+  },
+  "valid": {
+    "models": {
+      "catboost_optuna": {
+        "rmse": 0.18253998255502343,
+        "mae": 0.1296318612589384,
+        "r2": 0.9255789383960201
+      }
+    }
+  },
+  "test": {
+    "models": {
+      "catboost_optuna": {
+        "rmse": 0.18145869356836822,
+        "mae": 0.13075942035795476,
+        "r2": 0.9309482203205494
+      }
+    }
+  }
+}

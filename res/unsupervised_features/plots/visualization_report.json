@@ -1,0 +1,63 @@
+{
+  "score_columns": [
+    "cluster_distance",
+    "robust_z",
+    "isolation_score"
+  ],
+  "split": {
+    "strategy": "year_stratified_group_split",
+    "group_cols": [
+      "gu_code",
+      "ym",
+      "property_type"
+    ],
+    "train_size": 0.7,
+    "valid_size": 0.15,
+    "test_size": 0.15,
+    "random_state": 42,
+    "rows": {
+      "train": 45477,
+      "valid": 9881,
+      "test": 9074
+    },
+    "years": {
+      "2022": {
+        "groups": 541,
+        "train_groups": 378,
+        "valid_groups": 81,
+        "test_groups": 82
+      },
+      "2023": {
+        "groups": 554,
+        "train_groups": 387,
+        "valid_groups": 83,
+        "test_groups": 84
+      },
+      "2024": {
+        "groups": 1096,
+        "train_groups": 767,
+        "valid_groups": 164,
+        "test_groups": 165
+      },
+      "2025": {
+        "groups": 1042,
+        "train_groups": 729,
+        "valid_groups": 156,
+        "test_groups": 157
+      }
+    }
+  },
+  "plots": [
+    "res/unsupervised_features/plots/hist_cluster_distance.png",
+    "res/unsupervised_features/plots/hist_robust_z.png",
+    "res/unsupervised_features/plots/hist_isolation_score.png",
+    "res/unsupervised_features/plots/scatter_target_cluster_distance.png",
+    "res/unsupervised_features/plots/scatter_target_robust_z.png",
+    "res/unsupervised_features/plots/scatter_target_isolation_score.png",
+    "res/unsupervised_features/plots/pca_cluster_id.png",
+    "res/unsupervised_features/plots/pca_log1p_lh_vs_rent_median_ratio_winsor.png",
+    "res/unsupervised_features/plots/pca_cluster_distance.png",
+    "res/unsupervised_features/plots/pca_robust_z.png",
+    "res/unsupervised_features/plots/pca_isolation_score.png"
+  ]
+}

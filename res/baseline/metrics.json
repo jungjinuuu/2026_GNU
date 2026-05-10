@@ -1,0 +1,74 @@
+{
+  "target": "log1p_lh_vs_rent_median_ratio_winsor",
+  "split": {
+    "strategy": "year_stratified_group_split",
+    "group_cols": [
+      "gu_code",
+      "ym",
+      "property_type"
+    ],
+    "train_size": 0.7,
+    "valid_size": 0.15,
+    "test_size": 0.15,
+    "random_state": 42,
+    "rows": {
+      "train": 45477,
+      "valid": 9881,
+      "test": 9074
+    },
+    "years": {
+      "2022": {
+        "groups": 541,
+        "train_groups": 378,
+        "valid_groups": 81,
+        "test_groups": 82
+      },
+      "2023": {
+        "groups": 554,
+        "train_groups": 387,
+        "valid_groups": 83,
+        "test_groups": 84
+      },
+      "2024": {
+        "groups": 1096,
+        "train_groups": 767,
+        "valid_groups": 164,
+        "test_groups": 165
+      },
+      "2025": {
+        "groups": 1042,
+        "train_groups": 729,
+        "valid_groups": 156,
+        "test_groups": 157
+      }
+    }
+  },
+  "valid": {
+    "models": {
+      "global_median": {
+        "rmse": 0.7084651963188411,
+        "mae": 0.6044584216399925,
+        "r2": -0.12102911441468223
+      },
+      "gu_property_median": {
+        "rmse": 0.3027695208341073,
+        "mae": 0.21652656594538655,
+        "r2": 0.7952593119047914
+      }
+    }
+  },
+  "test": {
+    "models": {
+      "global_median": {
+        "rmse": 0.7250198169826495,
+        "mae": 0.6059132162696785,
+        "r2": -0.1023488952727547
+      },
+      "gu_property_median": {
+        "rmse": 0.31381671257642085,
+        "mae": 0.22369265358947235,
+        "r2": 0.7934755597490903
+      }
+    }
+  }
+}
