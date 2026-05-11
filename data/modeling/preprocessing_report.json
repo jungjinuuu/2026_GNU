@@ -1,0 +1,41 @@
+{
+  "input_rows": 77062,
+  "flagged_rows": 77062,
+  "preprocessed_train_rows": 64432,
+  "preprocessed_ood_rows": 11528,
+  "property_type_counts_input": {
+    "detached": 28953,
+    "rh": 27886,
+    "other": 6902,
+    "officetel": 5382,
+    "urban": 4748,
+    "apt": 3191
+  },
+  "property_type_counts_train": {
+    "detached": 28425,
+    "rh": 27519,
+    "officetel": 5343,
+    "apt": 3145
+  },
+  "property_type_counts_ood": {
+    "other": 6816,
+    "urban": 4712
+  },
+  "flag_counts": {
+    "is_ood_property_type": 11650,
+    "is_exact_duplicate": 340,
+    "area_missing_or_zero": 633,
+    "area_too_small": 4,
+    "area_review_large": 3,
+    "area_too_large": 12,
+    "room_missing": 14,
+    "room_too_large": 19,
+    "household_size_missing_or_zero": 43576,
+    "sale_feature_missing": 11763,
+    "sale_low_confidence": 11155,
+    "rent_feature_missing": 11650,
+    "support_ratio_low": 40,
+    "lh_vs_sale_ratio_gt_1": 382,
+    "jeonse_to_sale_ratio_gt_1": 36
+  }
+}

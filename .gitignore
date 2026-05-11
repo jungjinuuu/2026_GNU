@@ -8,3 +8,4 @@ data/features
 data/raw
 render.yaml
 .python-version
+requirements-deploy.txt
